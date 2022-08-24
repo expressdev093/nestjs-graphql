@@ -73,11 +73,6 @@ $ npm run typeorm:run-migrations
 # to revert a migration
 $ npm run typeorm:revert-migration
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
 ## Support
