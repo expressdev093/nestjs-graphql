@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository with Rest Api and Graphql with Passport and jwt local authentication and authorisation for both rest and graphql apis
 
 ## Installation
 
