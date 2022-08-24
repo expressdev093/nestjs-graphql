@@ -65,7 +65,10 @@ $ npm run test:cov
 $ npm run typeorm:generate-migration
 
 # generate migration for your specific entity
-$ npm run typeorm:generate-migration --name=CreateUser
+$ npm run typeorm:generate-migration --name=CreateEntityName
+
+# To create basic migration
+$ npm run typeorm:create-migration --name=YourMigrationName
 
 # to run migrations
 $ npm run typeorm:run-migrations
