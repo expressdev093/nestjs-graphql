@@ -24,7 +24,7 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository with Rest Api and Graphql with Passport and jwt local authentication and authorisation for both rest and graphql apis
 
 ## Installation
 
@@ -56,6 +56,26 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+```
+
+## Running the migrations
+
+```bash
+# generate migrations for your all entities
+$ npm run typeorm:generate-migration
+
+# generate migration for your specific entity
+$ npm run typeorm:generate-migration --name=CreateEntityName
+
+# To create basic migration
+$ npm run typeorm:create-migration --name=YourMigrationName
+
+# to run migrations
+$ npm run typeorm:run-migrations
+
+# to revert a migration
+$ npm run typeorm:revert-migration
+
 ```
 
 ## Support
