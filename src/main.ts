@@ -8,7 +8,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.useGlobalPipes(new ValidationPipe());
-  //app.useGlobalGuards([RolesGuard]);
+  //app.useGlobalGuards(new RolesGuard());
   const config = app.get(ConfigService);
   const PORT = config.get<number>('PORT');
   await app.listen(PORT, () => {

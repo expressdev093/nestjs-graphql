@@ -4,6 +4,7 @@ import { jwtSecret } from './constants';
 import * as bcrypt from 'bcrypt';
 import { UsersService } from '../users/users.service';
 import { User } from '../users/entities/user.entity';
+import { LoginResponse } from './dto/login-response';
 @Injectable()
 export class AuthService {
   constructor(
@@ -24,7 +25,8 @@ export class AuthService {
     return undefined;
   }
 
-  login(user: User): { access_token: string } {
+  login(user: User): LoginResponse {
+    const { password, ...restUser } = user;
     const payload = {
       email: user.email,
       sub: user.id,
@@ -33,6 +35,7 @@ export class AuthService {
 
     return {
       access_token: this.jwtService.sign(payload),
+      user: restUser,
     };
   }
 

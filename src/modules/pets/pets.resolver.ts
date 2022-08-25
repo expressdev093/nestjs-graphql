@@ -8,7 +8,6 @@ import {
   Parent,
   ResolveField,
 } from '@nestjs/graphql';
-import { GqlAuthGuard } from 'src/modules/auth/guards/gql-auth.guard';
 import { Owner } from 'src/modules/owners/entities/owner.entity';
 import { OwnersService } from 'src/modules/owners/owners.service';
 import { GetPetArgs } from './dto/args/get-pet.args';
@@ -16,7 +15,6 @@ import { CreatePetInput } from './dto/input/create-pet.input';
 import { Pet } from './pet.entity';
 import { PetsService } from './pets.service';
 
-@UseGuards(GqlAuthGuard)
 @Resolver(() => Pet)
 export class PetsResolver {
   constructor(

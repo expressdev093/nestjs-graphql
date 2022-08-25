@@ -6,12 +6,14 @@ import { UpdateUserInput } from './dto/update-user.input';
 import { UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from 'src/modules/auth/guards/gql-auth.guard';
 import { CurrentUser } from 'src/modules/auth/decorator/current-user.decorator';
+import { Public } from '../auth/metadata/public.metadata';
 
 @Resolver(() => User)
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
   @Mutation(() => User)
+  @Public()
   createUser(@Args('createUserInput') createUserInput: CreateUserInput) {
     return this.usersService.create(createUserInput);
   }

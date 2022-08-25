@@ -15,8 +15,8 @@ import { forwardRef, Inject, UseGuards } from '@nestjs/common';
 import { GqlAuthGuard } from 'src/modules/auth/guards/gql-auth.guard';
 import { Pet } from '../pets/pet.entity';
 import { PetsService } from '../pets/pets.service';
+import { Public } from '../auth/metadata/public.metadata';
 
-@UseGuards(GqlAuthGuard)
 @Resolver(() => Owner)
 export class OwnersResolver {
   constructor(
