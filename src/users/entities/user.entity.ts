@@ -23,4 +23,8 @@ export class User {
   @Column()
   @Field()
   lastName: string;
+
+  @Column()
+  @Field()
+  role: string
 }

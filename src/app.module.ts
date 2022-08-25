@@ -8,6 +8,10 @@ import { OwnersModule } from './owners/owners.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
+import { GqlAuthGuard } from './auth/guards/gql-auth.guard';
+import { RolesGuard } from './auth/guards/roles.guard';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -19,28 +23,29 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       useFactory: (configService: ConfigService) => ({
         type: 'sqlite',
         database: configService.get('DB_NAME'),
-        entities: ['./src/**/*.entity.{js,ts}'],
-        migrations: ['./src/database/migrations/*{.ts,.js}'],
-        autoLoadEntities: true,
+        entities: [join(__dirname, '**', '*.entity.{ts,js}')],
+        migrations: ['dist/src/database/migrations/*{.ts,.js}'],
+        synchronize: false,
+        //autoLoadEntities: true,
       }),
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
+      installSubscriptionHandlers: true,
     }),
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'db',
-      entities: ['dist/**/*.entity{.ts,.js}'],
-      synchronize: true,
-      logging: true,
-    }),
+
     PetsModule,
     OwnersModule,
     UsersModule,
     AuthModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: RolesGuard,
+    // },
+  ],
 })
 export class AppModule {}
