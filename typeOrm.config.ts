@@ -1,18 +1,16 @@
 import { DataSource } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
-import { config } from 'dotenv';
-import { User } from './src/users/entities/user.entity';
-import { Pet } from './src/pets/pet.entity';
-import { Owner } from './src/owners/entities/owner.entity';
 import { join } from 'path';
-
-config();
+import { config } from 'dotenv';
+config({
+  path: `${process.cwd()}/config/env/${process.env.NODE_ENV}.env`,
+});
 
 const configService = new ConfigService();
 
 export default new DataSource({
   type: 'sqlite',
-  database: configService.get('DB_NAME'),
+  database: 'devdb',
   entities: [join(__dirname, '**', '*.entity.{ts,js}')],
   migrations: ['dist/src/database/migrations/*{.ts,.js}'],
   synchronize: false,

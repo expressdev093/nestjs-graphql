@@ -300,7 +300,8 @@ FakesAssemblies/
 node_modules/
 
 src/schema.gql
-db
+devdb
+productiondb
 
 # Typescript v1 declaration files
 typings/
@@ -399,3 +400,5 @@ Temporary Items
 # Local
 .env
 dist
+src/config/env/development.env
+src/config/env/production.env
