@@ -10,6 +10,8 @@ import {
 } from '@nestjs/graphql';
 import { Owner } from 'src/modules/owners/entities/owner.entity';
 import { OwnersService } from 'src/modules/owners/owners.service';
+import { GqlAuthGuard } from '../auth/guards/gql-auth.guard';
+import { Public } from '../auth/metadata/public.metadata';
 import { GetPetArgs } from './dto/args/get-pet.args';
 import { CreatePetInput } from './dto/input/create-pet.input';
 import { Pet } from './pet.entity';

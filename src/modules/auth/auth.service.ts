@@ -5,6 +5,7 @@ import * as bcrypt from 'bcrypt';
 import { UsersService } from '../users/users.service';
 import { User } from '../users/entities/user.entity';
 import { LoginResponse } from './dto/login-response';
+import { LoginUserInput } from './dto/inputs/login-user.input';
 @Injectable()
 export class AuthService {
   constructor(

@@ -6,8 +6,8 @@ import { GqlAuthGuard } from './gql-auth.guard';
 
 @Injectable()
 export class JwtAuthGuard extends GqlAuthGuard {
-  constructor(private readonly reflector: Reflector) {
-    super();
+  constructor(readonly reflector: Reflector) {
+    super(reflector);
   }
   getRequest(context: ExecutionContext) {
     const ctx = GqlExecutionContext.create(context);

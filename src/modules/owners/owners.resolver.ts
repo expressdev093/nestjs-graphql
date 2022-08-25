@@ -16,6 +16,9 @@ import { GqlAuthGuard } from 'src/modules/auth/guards/gql-auth.guard';
 import { Pet } from '../pets/pet.entity';
 import { PetsService } from '../pets/pets.service';
 import { Public } from '../auth/metadata/public.metadata';
+import { Roles } from '../auth/decorator/roles.decorator';
+import { Role } from '../auth/enums/role.enum';
+import { RolesGuard } from '../auth/guards/roles.guard';
 
 @Resolver(() => Owner)
 export class OwnersResolver {

@@ -50,9 +50,13 @@ import { validationSchema } from './config/env/validation.env';
   ],
   controllers: [],
   providers: [
+    // {
+    //   provide: APP_GUARD,
+    //   useClass: JwtAuthGuard,
+    // },
     {
       provide: APP_GUARD,
-      useClass: JwtAuthGuard,
+      useClass: GqlAuthGuard,
     },
     {
       provide: APP_GUARD,
