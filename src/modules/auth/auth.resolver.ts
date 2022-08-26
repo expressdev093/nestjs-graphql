@@ -1,13 +1,15 @@
 import { UseGuards } from '@nestjs/common';
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql';
+import { User } from '../users/entities/user.entity';
 import { AuthService } from './auth.service';
 import { LoginUserInput } from './dto/inputs/login-user.input';
+import { RegisterUserInput } from './dto/inputs/register-user.input';
 import { LoginResponse } from './dto/login-response';
 import { GqlLocalAuthGuard } from './guards/gql-local-auth.guard';
 import { Public } from './metadata/public.metadata';
 
 @Public()
-@Resolver(() => LoginResponse)
+@Resolver(() => User)
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
@@ -18,5 +20,14 @@ export class AuthResolver {
     @Context() context,
   ) {
     return this.authService.login(context.user);
+  }
+
+  @Mutation(() => User)
+  async register(
+    @Args('registerUserInput') registerUserInput: RegisterUserInput,
+  ) {
+    const user = await this.authService.signup(registerUserInput as User);
+    const { password, ...restUser } = user;
+    return restUser;
   }
 }
