@@ -5,7 +5,7 @@ import { AuthService } from './auth.service';
 import { LoginUserInput } from './dto/inputs/login-user.input';
 import { RegisterUserInput } from './dto/inputs/register-user.input';
 import { LoginResponse } from './dto/login-response';
-import { GqlLocalAuthGuard } from './guards/gql-local-auth.guard';
+import { LocalAuthGuard } from './guards/local-auth.guard';
 import { Public } from './metadata/public.metadata';
 
 @Public()
@@ -13,7 +13,7 @@ import { Public } from './metadata/public.metadata';
 export class AuthResolver {
   constructor(private readonly authService: AuthService) {}
 
-  @UseGuards(GqlLocalAuthGuard)
+  @UseGuards(LocalAuthGuard)
   @Mutation(() => LoginResponse)
   login(
     @Args('loginUserInput') loginUserInput: LoginUserInput,

@@ -8,12 +8,11 @@ import { AuthModule } from './modules/auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard';
-import { GqlAuthGuard } from './modules/auth/guards/gql-auth.guard';
 import { RolesGuard } from './modules/auth/guards/roles.guard';
 import { PetsModule } from './modules/pets/pets.module';
 import { UsersModule } from './modules/users/users.module';
 import { validationSchema } from './config/env/validation.env';
-
+import { SessionModule } from 'nestjs-session';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -56,7 +55,7 @@ import { validationSchema } from './config/env/validation.env';
     // },
     {
       provide: APP_GUARD,
-      useClass: GqlAuthGuard,
+      useClass: JwtAuthGuard,
     },
     {
       provide: APP_GUARD,

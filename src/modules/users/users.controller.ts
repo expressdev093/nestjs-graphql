@@ -1,6 +1,6 @@
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
 import { Request } from 'express';
-import { Roles } from 'src/modules/auth/decorator/roles.decorator';
+import { Roles } from 'src/modules/auth/metadata/roles.metadata';
 import { Role } from 'src/modules/auth/enums/role.enum';
 import { JwtAuthGuard } from 'src/modules/auth/guards/jwt-auth.guard';
 import { RolesGuard } from 'src/modules/auth/guards/roles.guard';

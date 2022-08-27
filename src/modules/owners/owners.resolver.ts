@@ -11,14 +11,10 @@ import { OwnersService } from './owners.service';
 import { Owner } from './entities/owner.entity';
 import { CreateOwnerInput } from './dto/create-owner.input';
 import { UpdateOwnerInput } from './dto/update-owner.input';
-import { forwardRef, Inject, UseGuards } from '@nestjs/common';
-import { GqlAuthGuard } from 'src/modules/auth/guards/gql-auth.guard';
 import { Pet } from '../pets/pet.entity';
 import { PetsService } from '../pets/pets.service';
-import { Public } from '../auth/metadata/public.metadata';
-import { Roles } from '../auth/decorator/roles.decorator';
+import { Roles } from '../auth/metadata/roles.metadata';
 import { Role } from '../auth/enums/role.enum';
-import { RolesGuard } from '../auth/guards/roles.guard';
 
 @Resolver(() => Owner)
 export class OwnersResolver {
@@ -27,11 +23,13 @@ export class OwnersResolver {
     private readonly petsService: PetsService,
   ) {}
 
+  @Roles(Role.Admin)
   @Mutation(() => Owner)
   createOwner(@Args('createOwnerInput') createOwnerInput: CreateOwnerInput) {
     return this.ownersService.create(createOwnerInput);
   }
 
+  @Roles(Role.Admin)
   @Query(() => [Owner], { name: 'owners' })
   findAll() {
     return this.ownersService.findAll();
